@@ -24,6 +24,13 @@ CREATE TABLE favorite_food
      REFERENCES person (person_id)
      );
 
+------- If you are running these statements in your database, you will first need to disable the foreign key constraint on the favorite_food table, and then re-enable the constraints when finished. The pro‐ gression of statements would be:
+
+set foreign_key_checks=0;
+ALTER TABLE person
+MODIFY person_id SMALLINT UNSIGNED AUTO_INCREMENT;
+set foreign_key_checks=1;
+
 --------------------------- INSERT DATA
 
 INSERT INTO person
@@ -73,3 +80,13 @@ ORDER BY food;
 INSERT INTO person 
 (person_id, fname, lname, eye_color, birth_date, street, city, state, country, postal_code)
 VALUES (null, 'Susan','Smith', 'BL', '1975-11-02','23 Maple St.', 'Arlington', 'VA', 'USA', '20220');
+
+--------------------- UPDATE
+
+ UPDATE person
+ SET street = '1225 Tremont St.',
+     city = 'Boston',
+     state = 'MA',
+     country = 'USA',
+     postal_code = '02138'
+WHERE person_id = 1;
