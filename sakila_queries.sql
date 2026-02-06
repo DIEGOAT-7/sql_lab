@@ -57,3 +57,28 @@ FROM information_schema.KEY_COLUMN_USAGE
 WHERE table_schema = DATABASE()
   AND referenced_table_name IS NOT NULL
 ORDER BY table_name;
+
+--------
+
+-- Cuántos alquileres se han hecho por país y cuánto dinero se ha generado en cada uno? -------------
+------------- ¿Cómo llego desde payment hasta country? ----------
+
+-- payment → customer → address → city → country
+
+SELECT 
+    co.country,
+    COUNT(p.payment_id) AS total_rentals,
+    SUM(p.amount) AS total_revenue
+FROM payment p
+JOIN customer cu 
+    ON p.customer_id = cu.customer_id
+JOIN address a
+    ON cu.address_id = a.address_id
+JOIN city ci 
+    ON a.city_id = ci.city_id
+JOIN country co
+    ON ci.country_id = co.country_id
+GROUP BY co.country
+ORDER BY total_revenue DESC;
+
+
