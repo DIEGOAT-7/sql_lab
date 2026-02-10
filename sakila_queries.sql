@@ -81,4 +81,27 @@ JOIN country co
 GROUP BY co.country
 ORDER BY total_revenue DESC;
 
+---------------
+---- Book Exercises
 
+SELECT c.first_name, c.last_name, COUNT(*)
+FROM customer c
+  INNER JOIN rental r
+   ON C.customer_id = r.customer_id
+GROUP BY c.first_name, C.last_name
+HAVING COUNT(*) >= 40;
+
+
+SELECT c.first_name, c.last_name, time(r.rental_date) rental_time
+FROM customer c
+  INNER JOIN rental r
+  ON c.customer_id = r.customer_id
+WHERE date(r.rental_date) = '2005-06-14';
+
+----
+
+SELECT DISTINCT c.customer_id, date(r.rental_date)
+FROM customer c
+  INNER JOIN rental r
+  ON c.customer_id = r.customer_id
+WHERE date(r.rental_date) = '2005-07-05';
