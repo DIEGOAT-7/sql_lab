@@ -13,8 +13,8 @@ FROM customer c
 WHERE date(r.rental_date) = '2005-06-14';
 
 -- Exercise
-Retrieve the actor ID, first name, and last name for all actors. Sort by 
-last name and then by first name.
+--Retrieve the actor ID, first name, and last name for all actors. Sort by 
+--last name and then by first name.
 
 SELECT actor_id, first_name, last_name
 FROM actor
@@ -45,7 +45,7 @@ WHERE date(r.rental_date) = '2005-07-05';
 
 ----
 
-Top clientes por volumen de alquilereS
+--Top clientes por volumen de alquilereS
 
 SELECT c.customer_id,  c.first_name, c.last_name, COUNT(r.rental_id) AS 
 total_rentals
@@ -67,9 +67,8 @@ ORDER BY total_payment DESC;
 
 ---
 
-Ejercicio 3 – Clientes valiosos
-
-Obtén los clientes que hayan gastado más de $100 en total.
+--- Ejercicio 3 – Clientes valiosos
+-- Obtén los clientes que hayan gastado más de $100 en total.
 
 SELECT c.customer_id, c.first_name, c.last_name, SUM(p.amount) AS 
 total_spend
@@ -82,7 +81,6 @@ ORDER BY total_spend DESC;
 
 --------
 
-Categorías más rentadas
-
-Calcula cuántas veces se ha rentado cada categoría de película.
+-- Categorías más rentadas
+-- Calcula cuántas veces se ha rentado cada categoría de película.
 
