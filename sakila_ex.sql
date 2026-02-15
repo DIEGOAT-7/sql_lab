@@ -84,3 +84,15 @@ ORDER BY total_spend DESC;
 -- Categorías más rentadas
 -- Calcula cuántas veces se ha rentado cada categoría de película.
 
+SELECT c.name AS category_name, COUNT(r.rental_id) AS total_rentals
+FROM rental r
+  INNER JOIN inventory i
+  ON r.inventory_id = i.inventory_id
+  INNER JOIN film f
+  ON i.film_id = f.film_id
+  INNER JOIN film_category fc
+  ON f.film_id = fc.film_id
+  INNER JOIN category c
+  ON fc.category_id = c.category_id
+GROUP BY category_name
+ORDER BY total_rentals DESC;
