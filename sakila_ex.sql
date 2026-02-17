@@ -96,3 +96,11 @@ FROM rental r
   ON fc.category_id = c.category_id
 GROUP BY category_name
 ORDER BY total_rentals DESC;
+
+-------
+
+SELECT 
+FROM
+WHERE
+GROUP BY
+HAVING
