@@ -1,29 +1,80 @@
 # SQL Lab
 
-## Relational Modeling Exercise
+Práctica personal de SQL usando MySQL y la base de datos [Sakila](https://dev.mysql.com/doc/sakila/en/).
 
-This section demonstrates basic relational database design concepts
-using MySQL.
+## Quick Start
 
-### Schema Design
-- `person`: main entity
-- `favorite_food`: child table (one-to-many relationship)
+```bash
+docker compose up -d
+```
 
-### Key Concepts Applied
-- Primary keys and composite keys
-- Foreign key constraints
-- AUTO_INCREMENT behavior
-- Referential integrity
-- Constraint-related errors and resolution
+MySQL queda disponible en `localhost:3306` con Sakila ya cargada.
 
-### Example Tables
-- `person(person_id PK, fname, lname, eye_color, birth_date, ...)`
-- `favorite_food(person_id FK, food)`
+| Parámetro | Valor     |
+|-----------|-----------|
+| Host      | 127.0.0.1 |
+| Port      | 3306      |
+| User      | root      |
+| Password  | sakila    |
+| Database  | sakila    |
 
-### Notes
-- `ENUM` was used for simplicity in a learning context
-- `foreign_key_checks` was temporarily disabled for schema alteration (lab use only)
+Conectar desde terminal:
+```bash
+mysql -h 127.0.0.1 -P 3306 -u root -psakila sakila
+```
+
+Clientes GUI recomendados: **TablePlus**, **DBeaver**, **MySQL Workbench**.
+
+Apagar el contenedor:
+```bash
+docker compose down          # conserva los datos
+docker compose down -v       # borra datos (reset limpio)
+```
+
+---
+
+## Estructura del proyecto
+
+```
+sql_lab/
+├── 01_modeling/          # DDL/DML: CREATE TABLE, FK, INSERT, UPDATE
+├── 02_fundamentals/      # SELECT, WHERE, LIKE, IN, BETWEEN, DISTINCT
+├── 03_joins/             # INNER JOIN, LEFT JOIN, errores comunes
+├── 04_aggregations/      # GROUP BY, HAVING, COUNT/SUM/AVG
+├── 05_window_functions/  # RANK, LAG/LEAD, NTILE, ROW_NUMBER, running totals
+├── 06_subqueries_ctes/   # WITH, CTEs múltiples, EXISTS, subqueries escalares
+├── 07_analysis_project/  # Reporte ejecutivo completo de Sakila
+└── sakila-db/            # Schema y datos originales (fuente para Docker)
+```
+
+## Learning Path
+
+Seguir las carpetas en orden numérico. Cada archivo tiene comentarios
+que explican el concepto antes del código.
+
+```
+01 → 02 → 03 → 04 → 05 → 06 → 07
+```
+
+El salto más importante es `04 → 05` (window functions). Todo cambia ahí.
+
+---
+
+## Schema de Sakila (ruta principal de JOINs)
+
+```
+rental ──┬── customer
+         ├── inventory ── film ── film_category ── category
+         │                    └── film_actor    ── actor
+         └── payment
+
+store ── staff
+      └── inventory
+```
+
+---
 
 ## Dataset
-- MySQL Sakila Database
 
+Sakila simula una cadena de renta de DVDs con datos reales de **mayo 2005 a febrero 2006**.
+Contiene ~16,000 alquileres, 599 clientes, 1000 películas, 16 categorías.

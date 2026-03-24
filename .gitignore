@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Vim swap files
+*.swp
+*.swo
+
+# MySQL dumps / raw terminal output
+*.txt
+
+# Compressed archives
+*.tar.gz
+*.zip
+
+# PDF (reference material, no need to track)
+*.pdf

@@ -1,9 +1,10 @@
--- Clientes que más dinero han gastado
+-- Top 10 clientes por gasto total
+USE sakila;
 
 SELECT
     c.customer_id,
     CONCAT(c.first_name, ' ', c.last_name) AS customer,
-    SUM(p.amount) AS total_spent
+    SUM(p.amount)                           AS total_spent
 FROM customer c
 JOIN payment p ON c.customer_id = p.customer_id
 GROUP BY c.customer_id, customer

@@ -1,0 +1,16 @@
+-- Películas que generan buenos ingresos pero se rentan poco
+-- Candidatas a subir precio o promocionar más
+USE sakila;
+
+SELECT
+    f.title,
+    COUNT(r.rental_id)  AS total_rentals,
+    SUM(p.amount)       AS revenue
+FROM film f
+JOIN inventory i ON f.film_id = i.film_id
+JOIN rental r    ON i.inventory_id = r.inventory_id
+JOIN payment p   ON r.rental_id = p.rental_id
+GROUP BY f.film_id, f.title
+HAVING total_rentals < 20
+ORDER BY revenue DESC
+LIMIT 10;

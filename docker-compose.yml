@@ -1,0 +1,22 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: sakila_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: sakila
+      MYSQL_DATABASE: sakila
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./sakila-db/sakila-db/sakila-schema.sql:/docker-entrypoint-initdb.d/01_sakila-schema.sql:ro
+      - ./sakila-db/sakila-db/sakila-data.sql:/docker-entrypoint-initdb.d/02_sakila-data.sql:ro
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-psakila"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mysql_data:
