@@ -1,6 +1,16 @@
 # SQL Lab
 
-Práctica personal de SQL usando MySQL y la base de datos [Sakila](https://dev.mysql.com/doc/sakila/en/).
+<p align="center">
+  <img src="assets/book-cover.png" alt="Learning SQL - O'Reilly" height="220"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/mysql-logo.png" alt="MySQL" height="100"/>
+</p>
+
+<p align="center">
+  Práctica personal de SQL basada en <em>Learning SQL</em> (O'Reilly) usando MySQL y la base de datos <a href="https://dev.mysql.com/doc/sakila/en/">Sakila</a>.
+</p>
+
+---
 
 ## Quick Start
 
