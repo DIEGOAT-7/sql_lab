@@ -1,0 +1,5 @@
+# Forzar detección de SQL como lenguaje principal del repo
+*.sql linguist-detectable=true
+
+# Evitar que Linguist trate sakila-db/ como código vendored/de terceros
+sakila-db/**/*.sql linguist-vendored=false
